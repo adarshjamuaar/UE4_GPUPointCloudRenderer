@@ -167,7 +167,7 @@ void UGPUPointCloudRendererComponent::CreateStreamingBaseMesh(int32 pointCount)
 	CHECK_PCR_STATUS
 
 	// Dirty fix: Avoid recreation of point cloud mesh every frame
-	int32 pointsPerAxis = FMath::CeilToInt(FMath::Sqrt(pointCount));
+	int32 pointsPerAxis = FMath::CeilToInt(FMath::Sqrt(static_cast<float>(pointCount)));
 	if (pointsPerAxis % 2 == 1) pointsPerAxis++;
 	pointsPerAxis = GetUpperPowerOfTwo(pointsPerAxis);
 	auto totalPointCount = pointsPerAxis* pointsPerAxis;
@@ -202,7 +202,7 @@ void UGPUPointCloudRendererComponent::BuildTriangleStack(TArray<FCustomMeshTrian
 
 	// construct equilateral triangle with x, y, z as center and normal facing z
 	float a = 1.0f;				// side lenght
-	float sqrt3 = FMath::Sqrt(3);
+	float sqrt3 = FMath::Sqrt(3.0);
 	float r = sqrt3 / 6 * a;	// radius of inscribed circle
 	//float h_minus_r = a / sqrt3; // from center to tip. height - r
 	float x = 0;
