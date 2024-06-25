@@ -165,7 +165,7 @@ void FPointCloudStreamingCore::Initialize(unsigned int pointCount)
 	if (pointCount == 0)
 		return;
 
-	int32 pointsPerAxis = FMath::CeilToInt(FMath::Sqrt(pointCount));
+	int32 pointsPerAxis = FMath::CeilToInt(FMath::Sqrt(static_cast<float>(pointCount)));
 	// Ensure even-sized, power-of-two textures to avoid inaccuracies
 	if (pointsPerAxis % 2 == 1) pointsPerAxis++;
 	pointsPerAxis = GetUpperPowerOfTwo(pointsPerAxis);
